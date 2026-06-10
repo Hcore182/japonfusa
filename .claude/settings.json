@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 \"C:\\\\Users\\\\Hcore\\\\.claude\\\\plugins\\\\cache\\\\ui-ux-pro-max-skill\\\\ui-ux-pro-max\\\\2.5.0\\\\.claude\\\\skills\\\\ui-ux-pro-max\\\\scripts\\\\search.py\" \"japanese okinawa restaurant traditional minimalist\" --design-system -p \"Okinawa Restaurant\" -f markdown)",
+      "Bash(python \"C:\\\\Users\\\\Hcore\\\\.claude\\\\plugins\\\\cache\\\\ui-ux-pro-max-skill\\\\ui-ux-pro-max\\\\2.5.0\\\\.claude\\\\skills\\\\ui-ux-pro-max\\\\scripts\\\\search.py\" \"japanese okinawa restaurant traditional minimalist\" --design-system -p \"Okinawa Restaurant\" -f markdown)",
+      "Read(//c/Users/Hcore/.claude/plugins/cache/ui-ux-pro-max-skill/**)",
+      "Bash(python \"C:\\\\Users\\\\Hcore\\\\.claude\\\\plugins\\\\cache\\\\ui-ux-pro-max-skill\\\\ui-ux-pro-max\\\\2.5.0\\\\cli\\\\assets\\\\scripts\\\\search.py\" \"japanese okinawa restaurant traditional minimalist landing\" --design-system -p \"Okinawa Restaurant\" -f markdown)",
+      "Bash(start \"\" \"C:\\\\Users\\\\Hcore\\\\Okinawa\\\\index.html\")",
+      "Bash(grep -n \"RESPONSIVE\\\\|sakura\\\\|cloud-deco\\\\|back-top\\\\|scrollProgress\\\\|SCRIPTS\\\\|<\\\\/body>\" C:\\\\Users\\\\Hcore\\\\Okinawa\\\\index.html)",
+      "Bash(grep -n \"RESPONSIVE\\\\|sakura\\\\|cloud-deco\\\\|back-top\\\\|scrollProgress\\\\|SCRIPTS\\\\|</body>\" \"/mnt/c/Users/Hcore/Okinawa/index.html\" | head -40)",
+      "Read(//mnt/c/Users/Hcore/Okinawa/**)",
+      "PowerShell(\\(Get-Content \"C:\\\\Users\\\\Hcore\\\\Okinawa\\\\index.html\"\\).Count)",
+      "Bash(python -c \"from PIL import Image; print\\('PIL OK'\\)\")"
+    ]
+  }
+}

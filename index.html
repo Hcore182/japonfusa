@@ -1,0 +1,1734 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IEJIMA BENTOYA — 伊江島弁当屋 | Cocina Japonesa Okinawense</title>
+    <meta name="description" content="IEJIMA BENTOYA — Cocina tradicional de las islas Ryukyu en México. Chicken Nanban, Karage, Tonkatsu y Sakana Ryori. Auténtica gastronomía okinawense.">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; script-src 'self' 'unsafe-inline'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'self'">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ========================================
+           DESIGN SYSTEM — IEJIMA BENTOYA
+           Palette: ai-iro · washi · beni · kin
+                    beni-imo (morado) · indigo · goya
+        ======================================== */
+        :root {
+            --ink:        #1a1f3a;    /* ai-iro — índigo profundo */
+            --ink-light:  #2d3563;
+            --cream:      #f5ede0;    /* washi — papel tradicional */
+            --warm-white: #faf6ee;    /* off-white arena */
+            --surface:    #f0e6d2;    /* cerámica suave */
+            --vermilion:  #c23930;    /* beni — bermellón */
+            --vermilion-d:#a52d24;
+            --gold:       #b8912a;    /* kin — oro */
+            --gold-light: #d4a843;
+            --sage:       #3a6644;    /* goya — verde melón amargo */
+            --beni-imo:   #6b3565;    /* beni-imo — camote morado */
+            --beni-imo-l: #8a4a84;
+            --indigo-ry:  #2c3e6e;    /* índigo Ryukyu */
+            --sand:       #e2d0b4;
+            --ocean:      #2c5f7a;
+            --charcoal:   #282828;
+            --border:     rgba(184,145,42,0.2);
+            --border-l:   rgba(184,145,42,0.1);
+
+            /* Tipografía híbrida */
+            --font-display: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+            --font-serif:   'Noto Serif JP', Georgia, serif;
+            --font-sans:    'Inter', 'Noto Sans JP', system-ui, sans-serif;
+
+            --t-xs:  0.72rem;
+            --t-sm:  0.875rem;
+            --t-md:  1rem;
+            --t-lg:  1.125rem;
+            --t-xl:  1.25rem;
+            --t-2xl: 1.5rem;
+            --t-3xl: 1.875rem;
+            --t-4xl: 2.25rem;
+
+            --s1: 0.25rem;  --s2: 0.5rem;  --s3: 0.75rem;
+            --s4: 1rem;     --s5: 1.25rem; --s6: 1.5rem;
+            --s8: 2rem;     --s10: 2.5rem; --s12: 3rem;
+            --s16: 4rem;    --s24: 6rem;   --s32: 8rem;
+
+            --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --ease-out: cubic-bezier(0.0, 0.0, 0.2, 1);
+        }
+
+        /* RESET */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: var(--font-sans);
+            background: var(--warm-white);
+            color: var(--charcoal);
+            line-height: 1.7;
+            overflow-x: hidden;
+            font-feature-settings: "kern" 1, "liga" 1;
+        }
+        /* Grain de textura (yachimun / washi) */
+        .grain { position: relative; }
+        .grain::after {
+            content: '';
+            position: absolute; inset: 0; pointer-events: none; z-index: 1;
+            opacity: 0.028;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 200px;
+        }
+        .grain > * { position: relative; z-index: 2; }
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; }
+        button { cursor: pointer; border: none; background: none; font-family: inherit; }
+        textarea { resize: vertical; }
+
+        /* ======= UTILITIES ======= */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--s6); }
+
+        /* ======= SCROLL ANIMATIONS ======= */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.65s var(--ease), transform 0.65s var(--ease);
+        }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+        .fade-in {
+            opacity: 0;
+            transition: opacity 0.8s var(--ease);
+        }
+        .fade-in.visible { opacity: 1; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .fade-up, .fade-in { opacity: 1; transform: none; transition: none; }
+        }
+
+        /* ======= SECTION SEPARATORS ======= */
+        .section-sep {
+            display: flex;
+            align-items: center;
+            gap: var(--s4);
+            padding: var(--s8) var(--s8);
+        }
+        .section-sep .sep-line { flex: 1; height: 1px; }
+        .section-sep .sep-line:first-child {
+            background: linear-gradient(to right, transparent, rgba(184,145,42,0.42));
+        }
+        .section-sep .sep-line:last-child {
+            background: linear-gradient(to left, transparent, rgba(184,145,42,0.42));
+        }
+        .section-sep .sep-mark {
+            font-family: var(--font-serif);
+            font-size: 0.5rem; color: var(--gold);
+            letter-spacing: 0.65em; padding-left: 0.65em;
+            white-space: nowrap;
+        }
+        /* Background variants */
+        .section-sep--ww  { background: var(--warm-white); }
+        .section-sep--cr  { background: var(--cream); }
+        .section-sep--sf  { background: var(--surface); }
+        /* Dark→light transition separator */
+        .section-sep--ink-ww {
+            background: linear-gradient(to bottom, var(--ink) 0%, var(--warm-white) 100%);
+            padding: 2px var(--s8);
+        }
+        .section-sep--ink-ww .sep-line:first-child {
+            background: linear-gradient(to right, transparent, rgba(184,145,42,0.5));
+        }
+        .section-sep--ink-ww .sep-line:last-child {
+            background: linear-gradient(to left, transparent, rgba(184,145,42,0.5));
+        }
+        .section-sep--ink-ww .sep-mark {
+            color: var(--gold-light);
+            font-size: 0.65rem;
+            text-shadow: 0 1px 6px rgba(0,0,0,0.7), 0 0 12px rgba(0,0,0,0.4);
+        }
+
+        /* ======= NAVIGATION ======= */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: var(--s4) var(--s6);
+            display: flex; align-items: center; justify-content: space-between;
+            transition: background 0.4s var(--ease), box-shadow 0.4s var(--ease);
+        }
+        .nav.scrolled {
+            background: rgba(250,247,242,0.96);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 1px 0 var(--border);
+        }
+
+        .nav-logo { display: flex; flex-direction: column; gap: 2px; }
+        .nav-logo-jp {
+            font-family: var(--font-serif);
+            font-size: var(--t-lg); font-weight: 700;
+            color: var(--vermilion); line-height: 1;
+            letter-spacing: 0.04em; text-transform: uppercase;
+            transition: color 0.3s;
+        }
+        .nav-logo-es {
+            font-family: var(--font-serif);
+            font-size: 0.65rem; letter-spacing: 0.22em;
+            color: var(--cream); text-transform: uppercase;
+            transition: color 0.3s;
+        }
+        .nav.scrolled .nav-logo-es { color: var(--charcoal); }
+
+        .nav-links { display: flex; gap: var(--s8); list-style: none; }
+        .nav-links a {
+            font-size: var(--t-sm); letter-spacing: 0.06em;
+            color: rgba(244,237,224,0.9);
+            transition: color 0.25s;
+            position: relative; padding-bottom: 3px;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute; bottom: 0; left: 0; right: 0;
+            height: 1px; background: var(--gold);
+            transform: scaleX(0); transform-origin: left;
+            transition: transform 0.25s var(--ease);
+        }
+        .nav-links a:hover::after { transform: scaleX(1); }
+        .nav.scrolled .nav-links a { color: var(--charcoal); }
+
+        .nav-cta {
+            padding: var(--s2) var(--s6);
+            border: 1px solid rgba(244,237,224,0.55);
+            color: var(--cream);
+            font-family: var(--font-serif);
+            font-size: var(--t-xs); letter-spacing: 0.1em; text-transform: uppercase;
+            transition: all 0.25s;
+        }
+        .nav.scrolled .nav-cta { border-color: var(--vermilion); color: var(--vermilion); }
+        .nav-cta:hover { background: var(--vermilion); border-color: var(--vermilion); color: var(--cream); }
+        .nav-cta:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+        /* ======= SCROLL PROGRESS BAR ======= */
+        .scroll-progress {
+            position: fixed; top: 0; left: 0; z-index: 200;
+            height: 3px; width: 0%;
+            background: linear-gradient(90deg, var(--vermilion), var(--gold));
+            transition: width 0.08s linear;
+            pointer-events: none;
+        }
+
+        /* ======= BACK TO TOP ======= */
+        .back-top {
+            position: fixed; bottom: var(--s8); right: var(--s5);
+            width: 44px; height: 44px; z-index: 90;
+            background: var(--ink); border: 1px solid rgba(184,145,42,0.45);
+            color: var(--gold); font-size: 1.1rem;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none;
+            transform: translateY(14px);
+            transition: opacity 0.32s var(--ease), transform 0.32s var(--ease), background 0.22s;
+            cursor: pointer;
+        }
+        .back-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+        .back-top:hover  { background: var(--vermilion); border-color: var(--vermilion); }
+        .back-top:active { transform: scale(0.93); }
+
+        .hamburger { display: none; flex-direction: column; gap: 5px; padding: var(--s2); }
+        .hamburger span {
+            display: block; width: 22px; height: 1.5px;
+            background: var(--cream);
+            transition: transform 0.3s var(--ease), opacity 0.3s var(--ease), background 0.25s;
+            transform-origin: center;
+        }
+        .nav.scrolled .hamburger span { background: var(--charcoal); }
+        /* hamburger → X morph */
+        .hamburger.is-open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+        .hamburger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .hamburger.is-open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+        /* ======= MOBILE MENU ======= */
+        .mobile-menu {
+            display: flex; position: fixed; inset: 0; z-index: 99;
+            background: var(--ink);
+            flex-direction: column; justify-content: center;
+            align-items: center; gap: var(--s8);
+            padding: var(--s24) var(--s8);
+            /* hidden by default — animate in */
+            visibility: hidden; opacity: 0;
+            transform: scale(1.04);
+            transition:
+                visibility 0s linear 0.38s,
+                opacity 0.34s var(--ease),
+                transform 0.34s var(--ease);
+            pointer-events: none;
+        }
+        .mobile-menu.open {
+            visibility: visible; opacity: 1;
+            transform: scale(1);
+            transition-delay: 0s;
+            pointer-events: auto;
+        }
+        .mobile-menu a {
+            font-family: var(--font-serif);
+            font-size: var(--t-2xl); color: var(--cream);
+            letter-spacing: 0.1em;
+            opacity: 0; transform: translateY(18px);
+            transition: color 0.2s, opacity 0.32s var(--ease), transform 0.32s var(--ease);
+        }
+        /* stagger links on open */
+        .mobile-menu.open a:nth-child(2) { opacity:1; transform:none; transition-delay:0.06s; }
+        .mobile-menu.open a:nth-child(3) { opacity:1; transform:none; transition-delay:0.12s; }
+        .mobile-menu.open a:nth-child(4) { opacity:1; transform:none; transition-delay:0.18s; }
+        .mobile-menu.open a:nth-child(5) { opacity:1; transform:none; transition-delay:0.24s; }
+        .mobile-menu.open a:nth-child(6) { opacity:1; transform:none; transition-delay:0.30s; }
+        .mobile-menu a:hover { color: var(--gold); }
+
+
+        /* ======= TOUCH FEEDBACK ======= */
+        @media (hover: none) {
+                .btn-primary:active  { transform: scale(0.95); transition-duration: 0.1s; }
+            .btn-outline:active  { transform: scale(0.95); transition-duration: 0.1s; }
+            .testi-card:active   { transform: scale(0.98); transition-duration: 0.1s; }
+            .transport-item:active { background: var(--surface); transition-duration: 0.1s; }
+        }
+
+        /* ======= HERO ======= */
+        .hero {
+            position: relative; height: 100dvh; min-height: 600px;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
+        }
+        .hero-bg { position: absolute; inset: 0; z-index: 0; }
+        .hero-bg img, .hero-video {
+            position: absolute; inset: 0;
+            width: 100%; height: 100%;
+            object-fit: cover; object-position: center;
+        }
+        .hero-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(26,31,58,0.58) 0%,
+                rgba(26,31,58,0.32) 42%,
+                rgba(26,31,58,0.85) 100%
+            );
+        }
+
+        .hero-content {
+            position: relative; z-index: 1;
+            text-align: center; color: var(--cream);
+            padding: var(--s8); max-width: 880px;
+            background: radial-gradient(ellipse 82% 68% at center, rgba(26,31,58,0.30) 0%, transparent 74%);
+        }
+        /* irasshaimase welcome line */
+        .hero-irasshaimase {
+            font-family: var(--font-serif);
+            font-size: clamp(0.82rem, 1.7vw, 1rem);
+            letter-spacing: 0.22em;
+            color: var(--cream);
+            margin: 0 auto var(--s6);
+            display: flex; align-items: center; justify-content: center; gap: var(--s3);
+            width: fit-content;
+            background: rgba(26,31,58,0.52);
+            border: 1px solid rgba(184,145,42,0.55);
+            padding: var(--s2) var(--s8);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            text-shadow: 0 1px 10px rgba(0,0,0,0.55);
+        }
+        .hero-irasshaimase span:first-child { color: var(--gold-light); }
+        .hero-irasshaimase::before, .hero-irasshaimase::after { display: none; }
+
+        /* main restaurant name */
+        .hero-brand {
+            position: relative;
+            font-family: var(--font-display);
+            font-size: clamp(3.6rem, 13vw, 9.5rem);
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            line-height: 1.0;
+            color: var(--cream);
+            text-transform: uppercase;
+            text-shadow:
+                0 2px 8px rgba(0,0,0,0.65),
+                0 0 90px rgba(26,31,58,0.72),
+                0 10px 48px rgba(0,0,0,0.38);
+            padding: var(--s5) 0;
+            margin-bottom: var(--s4);
+        }
+.hero-brand::before,
+        .hero-brand::after {
+            content: '';
+            position: absolute;
+            left: 50%; transform: translateX(-50%);
+            width: 72%; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(184,145,42,0.80), transparent);
+        }
+        .hero-brand::before { top: 0; }
+        .hero-brand::after  { bottom: 0; opacity: 0.52; }
+        /* Japanese name below */
+        .hero-brand-jp {
+            font-family: var(--font-serif);
+            font-size: clamp(1.15rem, 2.8vw, 1.7rem);
+            font-weight: 400;
+            letter-spacing: 0.34em;
+            color: rgba(244,237,224,0.96);
+            text-shadow:
+                0 1px 12px rgba(0,0,0,0.58),
+                0 3px 28px rgba(0,0,0,0.34);
+            margin-bottom: var(--s8);
+        }
+
+        /* legacy eyebrow — keep for other potential uses */
+        .hero-eyebrow {
+            font-family: var(--font-serif);
+            font-size: var(--t-xs); letter-spacing: 0.32em;
+            text-transform: uppercase; color: rgba(244,237,224,0.78);
+            margin-bottom: var(--s6);
+            display: flex; align-items: center; justify-content: center; gap: var(--s4);
+        }
+        .hero-eyebrow::before, .hero-eyebrow::after {
+            content: ''; width: 48px; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(184,145,42,0.7));
+        }
+        .hero-eyebrow::after { background: linear-gradient(90deg, rgba(184,145,42,0.7), transparent); }
+
+        .hero-title-jp {
+            font-family: var(--font-serif);
+            font-size: clamp(3rem, 9vw, 6rem);
+            font-weight: 600; letter-spacing: 0.18em;
+            line-height: 1.1; color: var(--cream);
+            text-shadow: 0 2px 24px rgba(28,35,65,0.55);
+            margin-bottom: var(--s3);
+        }
+        .hero-title-es {
+            font-family: var(--font-serif);
+            font-size: clamp(0.9rem, 2.2vw, 1.35rem);
+            font-weight: 400; letter-spacing: 0.28em;
+            text-transform: uppercase; color: rgba(244,237,224,0.82);
+            margin-bottom: var(--s8);
+        }
+        .hero-tagline {
+            font-size: clamp(0.92rem, 1.8vw, 1.08rem);
+            font-weight: 500;
+            line-height: 1.92;
+            color: #fff;
+            text-shadow:
+                0 1px 4px rgba(0,0,0,0.85),
+                0 2px 14px rgba(0,0,0,0.65),
+                0 4px 32px rgba(0,0,0,0.45);
+            max-width: 540px; margin: 0 auto var(--s5);
+            letter-spacing: 0.06em;
+        }
+        .hero-disclaimer {
+            font-family: var(--font-serif);
+            font-size: clamp(0.65rem, 1.2vw, 0.78rem);
+            font-weight: 400;
+            letter-spacing: 0.14em;
+            color: rgba(244,237,224,0.82);
+            text-shadow:
+                0 1px 4px rgba(0,0,0,0.85),
+                0 2px 14px rgba(0,0,0,0.6);
+            margin: 0 auto var(--s8);
+            max-width: 580px;
+            line-height: 1.7;
+        }
+        .hero-disclaimer em {
+            font-style: normal;
+            color: #fff;
+        }
+        .hero-actions {
+            display: flex; gap: var(--s4);
+            justify-content: center; flex-wrap: wrap;
+            margin-top: var(--s8);
+        }
+        .btn-primary {
+            display: inline-block;
+            padding: var(--s4) var(--s10);
+            background: var(--vermilion);
+            color: #fff;
+            font-family: var(--font-serif);
+            font-size: var(--t-sm); letter-spacing: 0.18em; text-transform: uppercase;
+            border: 1px solid rgba(255,255,255,0.25);
+            box-shadow: 0 4px 18px rgba(194,57,48,0.45), 0 1px 4px rgba(0,0,0,0.3);
+            transition: all 0.25s var(--ease);
+            position: relative; overflow: hidden;
+        }
+        .btn-primary::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .btn-primary:hover {
+            background: var(--vermilion-d);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 28px rgba(194,57,48,0.55), 0 2px 6px rgba(0,0,0,0.35);
+        }
+        .btn-primary:active { transform: translateY(-1px); }
+        .btn-primary:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+        .btn-outline {
+            display: inline-block;
+            padding: var(--s4) var(--s8);
+            border: 1px solid rgba(244,237,224,0.5); color: var(--cream);
+            font-family: var(--font-serif);
+            font-size: var(--t-xs); letter-spacing: 0.14em; text-transform: uppercase;
+            transition: all 0.22s var(--ease);
+        }
+        .btn-outline:hover {
+            background: rgba(244,237,224,0.1);
+            border-color: rgba(244,237,224,0.85);
+        }
+
+        .hero-scroll {
+            position: absolute; bottom: var(--s4); left: 50%;
+            transform: translateX(-50%);
+            display: flex; flex-direction: column; align-items: center; gap: var(--s2);
+            color: rgba(244,237,224,0.55);
+            font-size: var(--t-xs); letter-spacing: 0.18em; text-transform: uppercase;
+            z-index: 1;
+            animation: scrollBounce 2.2s ease-in-out infinite;
+        }
+        @keyframes scrollBounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50%       { transform: translateX(-50%) translateY(7px); }
+        }
+
+        /* ======= PHILOSOPHY STRIP ======= */
+        .philosophy-strip {
+            background: var(--ink); color: var(--cream);
+            padding: var(--s12) var(--s6);
+            text-align: center; position: relative; overflow: hidden;
+        }
+        /* subtle seigaiha pattern overlay */
+        .philosophy-strip::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='20' cy='20' r='18' fill='none' stroke='rgba(184,145,42,0.05)' stroke-width='1'/%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+        .philosophy-quote {
+            position: relative;
+            font-family: var(--font-serif);
+            font-size: clamp(1.15rem, 3vw, 1.75rem);
+            font-weight: 400; letter-spacing: 0.1em; line-height: 1.65;
+        }
+        .philosophy-quote .jp {
+            display: block; margin-top: var(--s3);
+            font-size: 0.65em; letter-spacing: 0.22em; color: var(--gold);
+        }
+        .philosophy-sub {
+            position: relative;
+            font-size: var(--t-xs); color: rgba(244,237,224,0.42);
+            letter-spacing: 0.18em; margin-top: var(--s4);
+            text-transform: uppercase;
+        }
+
+        /* ======= ABOUT ======= */
+        .about { padding: var(--s8) 0 var(--s10); background: var(--warm-white); }
+        .about-header {
+            text-align: center;
+            margin-bottom: var(--s8);
+        }
+        .about-header .about-eyebrow {
+            justify-content: center;
+        }
+        .about-header .about-eyebrow::after { display: none; }
+        .about-inner {
+            display: grid; grid-template-columns: 3fr 2fr;
+            gap: var(--s16); align-items: center;
+        }
+
+        .about-img-wrap {
+            position: relative;
+        }
+        .about-img-wrap::before {
+            content: '';
+            position: absolute; inset: -14px 14px 14px -14px;
+            border: 1px solid var(--gold); opacity: 0.35;
+            pointer-events: none; z-index: 0;
+        }
+        .about-img-wrap img { position: relative; z-index: 1; width: 100%; }
+        .about-img-wrap::after {
+            content: '';
+            position: absolute; bottom: 0; left: 0; right: 0;
+            height: 45%;
+            background: linear-gradient(to bottom, transparent 0%, var(--warm-white) 100%);
+            z-index: 2; pointer-events: none;
+        }
+
+        .about-seal {
+            position: absolute; bottom: -20px; right: -20px;
+            width: 76px; height: 76px; z-index: 3;
+        }
+
+        .about-eyebrow {
+            display: flex; align-items: center; gap: var(--s3);
+            font-family: var(--font-serif);
+            font-size: var(--t-xs); letter-spacing: 0.26em;
+            text-transform: uppercase; color: var(--vermilion);
+            margin-bottom: var(--s4);
+        }
+        .about-eyebrow::after {
+            content: ''; width: 48px; height: 1px; background: var(--border);
+        }
+        .about-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 4vw, 2.75rem);
+            font-weight: 500; color: var(--ink);
+            line-height: 1.25; margin-bottom: var(--s2);
+        }
+        .about-title-jp {
+            font-family: var(--font-serif);
+            font-size: var(--t-lg); color: var(--gold);
+            letter-spacing: 0.16em; margin-bottom: var(--s8);
+        }
+        .about-text {
+            font-size: var(--t-md); color: #4e4e4e;
+            line-height: 1.88; margin-bottom: var(--s5);
+        }
+        .about-text strong { color: var(--ink); font-weight: 500; }
+        .about-text em { font-style: italic; color: var(--ocean); }
+
+        .about-note {
+            font-family: var(--font-display);
+            font-size: clamp(0.88rem, 1.5vw, 1rem);
+            font-style: italic;
+            color: var(--ocean);
+            line-height: 1.75;
+            margin-top: var(--s5);
+            padding: var(--s4) var(--s5);
+            border-left: 2px solid rgba(44,95,122,0.35);
+            background: rgba(44,95,122,0.045);
+        }
+
+        .about-sig {
+            display: flex; align-items: center; gap: var(--s4);
+            margin-top: var(--s8); padding-top: var(--s6);
+            border-top: 1px solid var(--border);
+        }
+        .about-sig-name {
+            font-family: var(--font-serif); font-size: var(--t-lg);
+            color: var(--ink); font-weight: 500;
+        }
+        .about-sig-role {
+            font-size: var(--t-xs); color: var(--gold); letter-spacing: 0.1em;
+        }
+
+        /* ======= MENU ======= */
+        .menu { position: relative; background: var(--cream); scroll-margin-top: 60px; }
+        .menu::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--vermilion), var(--gold), var(--vermilion));
+            z-index: 1;
+        }
+
+        .section-eyebrow {
+            font-family: var(--font-serif);
+            font-size: var(--t-xs); letter-spacing: 0.32em;
+            text-transform: uppercase; color: var(--vermilion);
+            margin-bottom: var(--s4);
+            display: flex; align-items: center; justify-content: center; gap: var(--s4);
+        }
+        .section-eyebrow::before, .section-eyebrow::after {
+            content: ''; width: 36px; height: 1px; background: var(--border);
+        }
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3.25rem);
+            font-weight: 500; color: var(--ink); margin-bottom: 0;
+        }
+        .section-title-jp {
+            font-family: var(--font-serif);
+            font-size: var(--t-xl); color: var(--gold); letter-spacing: 0.22em;
+            margin-top: 0;
+        }
+
+        /* --- Menu hero (image header) --- */
+        .menu-hero {
+            background: linear-gradient(to bottom, rgba(10,14,35,0.82) 0%, rgba(10,14,35,0.45) 65%, rgba(245,237,224,0.3) 100%),
+                        url('Assets/Chicken_Nanban.png') center/cover no-repeat;
+            text-align: center;
+            padding: var(--s2) 0 var(--s32);
+        }
+        .menu-hero .section-eyebrow {
+            color: rgba(245,237,224,0.9);
+            text-shadow: 0 1px 6px rgba(0,0,0,0.7);
+            margin-bottom: var(--s2);
+        }
+        .menu-hero .section-eyebrow::before,
+        .menu-hero .section-eyebrow::after { background: rgba(245,237,224,0.3); }
+        .menu-hero .section-title {
+            color: #fff;
+            font-weight: 600;
+            line-height: 1.05;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.9), 0 4px 20px rgba(0,0,0,0.7), 0 0 40px rgba(0,0,0,0.5);
+        }
+        .menu-hero .section-title-jp {
+            color: var(--gold-light);
+            text-shadow: 0 1px 8px rgba(0,0,0,0.7);
+            margin-top: -0.1rem;
+        }
+
+        /* --- Menu header (below image) --- */
+        .menu-header { text-align: center; padding: var(--s24) 0 var(--s12); }
+
+        /* --- Menu special banner --- */
+        .menu-special {
+            background: var(--ink);
+            border-top: 1px solid var(--gold);
+            border-bottom: 1px solid var(--gold);
+            padding: var(--s5) var(--s8);
+            text-align: center;
+            position: relative;
+        }
+        .menu-special::before,
+        .menu-special::after {
+            content: '';
+            position: absolute;
+            left: var(--s5); right: var(--s5);
+            height: 1px;
+            background: rgba(184,145,42,0.28);
+            pointer-events: none;
+        }
+        .menu-special::before { top: 5px; }
+        .menu-special::after  { bottom: 5px; }
+        .menu-special-jp {
+            font-family: var(--font-serif);
+            font-size: var(--t-xs); letter-spacing: 0.38em;
+            color: var(--gold); display: block;
+            margin-bottom: var(--s1);
+        }
+        .menu-special-text {
+            font-family: var(--font-display);
+            font-size: clamp(0.85rem, 2vw, 1.15rem);
+            font-weight: 500; letter-spacing: 0.08em;
+            white-space: nowrap;
+            color: var(--cream); display: block;
+        }
+        .menu-special-dots {
+            display: block; margin-top: var(--s2);
+            color: var(--vermilion); letter-spacing: 0.55em;
+            font-size: 0.55rem;
+        }
+        .menu-disclaimer {
+            text-align: left;
+            font-family: var(--font-serif);
+            font-size: 0.62rem;
+            color: rgba(74,60,40,0.48);
+            letter-spacing: 0.06em;
+            padding: var(--s3) var(--s8);
+            background: var(--cream);
+        }
+
+        /* ======= SÁNDWICHES ======= */
+        .sandwiches { position: relative; background: var(--cream); scroll-margin-top: 60px; }
+        .sandwiches::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--vermilion), var(--gold), var(--vermilion));
+            z-index: 1;
+        }
+        .sandwiches-hero {
+            background: linear-gradient(to bottom, rgba(10,14,35,0.82) 0%, rgba(10,14,35,0.45) 65%, rgba(245,237,224,0.3) 100%),
+                        url('Assets/Sandwich.png') center/cover no-repeat;
+            text-align: center;
+            padding: var(--s2) 0 var(--s32);
+        }
+        .sandwiches-hero .section-eyebrow {
+            color: rgba(245,237,224,0.9);
+            text-shadow: 0 1px 6px rgba(0,0,0,0.7);
+            margin-bottom: var(--s2);
+        }
+        .sandwiches-hero .section-eyebrow::before,
+        .sandwiches-hero .section-eyebrow::after { background: rgba(245,237,224,0.3); }
+        .sandwiches-hero .section-title {
+            color: #fff; font-weight: 600; line-height: 1.05;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.9), 0 4px 20px rgba(0,0,0,0.7), 0 0 40px rgba(0,0,0,0.5);
+        }
+        .sandwiches-hero .section-title-jp {
+            color: var(--gold-light);
+            text-shadow: 0 1px 8px rgba(0,0,0,0.7);
+            margin-top: -0.1rem;
+        }
+
+        /* --- Dish list --- */
+        .dish-list {
+            list-style: none;
+            padding: 0 0 var(--s6);
+            max-width: 640px; margin: 0 auto;
+        }
+        .dish-list-item {
+            padding: var(--s5) 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .dish-list-item:first-child { border-top: 1px solid var(--border); }
+        .dish-list-row {
+            display: flex;
+            align-items: baseline;
+            gap: var(--s4);
+        }
+        .dish-list-name {
+            font-family: var(--font-display);
+            font-size: var(--t-2xl);
+            font-weight: 500; color: var(--ink);
+            line-height: 1.15; white-space: nowrap; flex-shrink: 0;
+        }
+        .dish-list-jp {
+            font-family: var(--font-serif);
+            font-size: var(--t-xs); color: var(--gold);
+            letter-spacing: 0.18em; display: block;
+            margin-top: 1px;
+        }
+        .dish-list-dots {
+            flex: 1; border-bottom: 1px dotted rgba(184,145,42,0.45);
+            min-width: var(--s6); margin-bottom: 4px;
+        }
+        .dish-list-price {
+            font-family: var(--font-sans);
+            font-size: var(--t-sm); font-weight: 400;
+            font-variant-numeric: tabular-nums;
+            color: #b09060; white-space: nowrap; flex-shrink: 0;
+        }
+        .dish-list-desc {
+            font-size: var(--t-xs); color: #888;
+            margin-top: var(--s1); letter-spacing: 0.02em;
+        }
+
+        /* ---- Ingredient overlay (appears on hover) ---- */
+
+        /* ======= EXPERIENCE / PHILOSOPHY ======= */
+        .experience {
+            padding: var(--s32) 0;
+            background: var(--ink); color: var(--cream);
+            position: relative; overflow: hidden;
+        }
+        /* Large watermark kanji */
+        .experience::after {
+            content: '琉球';
+            position: absolute; right: -20px; top: 50%;
+            transform: translateY(-50%);
+            font-family: var(--font-serif);
+            font-size: 20rem; line-height: 1; color: rgba(244,237,224,0.03);
+            pointer-events: none; user-select: none;
+        }
+        .exp-inner {
+            display: grid; grid-template-columns: 3fr 2fr;
+            gap: var(--s16); align-items: center;
+        }
+        .exp-eyebrow {
+            font-size: var(--t-xs); letter-spacing: 0.26em;
+            text-transform: uppercase; color: var(--gold);
+            margin-bottom: var(--s6);
+            display: flex; align-items: center; gap: var(--s3);
+        }
+        .exp-eyebrow::after { content: ''; width: 36px; height: 1px; background: rgba(184,145,42,0.4); }
+        .exp-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 500; line-height: 1.3; margin-bottom: var(--s6);
+        }
+        .exp-title em { font-style: normal; color: var(--gold-light); }
+        .exp-text {
+            font-size: var(--t-md); color: rgba(244,237,224,0.68);
+            line-height: 1.88; margin-bottom: var(--s8);
+        }
+        .exp-text strong { color: var(--gold-light); font-weight: 500; }
+
+        .exp-values { display: flex; flex-direction: column; gap: var(--s5); }
+        .val-item { display: flex; align-items: flex-start; gap: var(--s4); }
+        .val-icon {
+            width: 34px; height: 34px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            border: 1px solid rgba(184,145,42,0.3); color: var(--gold);
+        }
+        .val-strong {
+            display: block; font-family: var(--font-serif);
+            font-size: var(--t-sm); font-weight: 500;
+            color: var(--cream); margin-bottom: 2px;
+        }
+        .val-sub { font-size: var(--t-xs); color: rgba(244,237,224,0.48); letter-spacing: 0.05em; }
+
+        .exp-stats {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: var(--s4); align-self: center;
+        }
+        .stat {
+            padding: var(--s6); border: 1px solid rgba(184,145,42,0.14);
+            text-align: center; position: relative;
+        }
+        .stat::before {
+            content: ''; position: absolute; top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 28px; height: 2px; background: var(--gold);
+        }
+        .stat-n {
+            font-family: var(--font-serif);
+            font-size: var(--t-3xl); font-weight: 600;
+            color: var(--gold); line-height: 1; margin-bottom: var(--s2);
+        }
+        .stat-n sup { font-size: var(--t-lg); }
+        .stat-l {
+            font-size: var(--t-xs); color: rgba(244,237,224,0.45);
+            letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.5;
+        }
+
+        /* ======= TESTIMONIALS ======= */
+        .testimonials { padding: var(--s32) 0; background: var(--warm-white); }
+        .testimonials-header { text-align: center; margin-bottom: var(--s16); }
+        .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s6); }
+
+        .testi-card {
+            padding: var(--s8); background: var(--cream);
+            position: relative;
+        }
+        .testi-card::before {
+            content: '\201C';
+            position: absolute; top: var(--s3); left: var(--s5);
+            font-family: var(--font-serif); font-size: 4.5rem; line-height: 1;
+            color: var(--gold); opacity: 0.25; pointer-events: none;
+        }
+        .testi-text {
+            font-family: var(--font-serif);
+            font-size: var(--t-md); color: var(--ink);
+            line-height: 1.78; font-style: italic;
+            margin-top: var(--s6); margin-bottom: var(--s6);
+        }
+        .testi-author {
+            display: flex; align-items: center; gap: var(--s3);
+            padding-top: var(--s4); border-top: 1px solid var(--border);
+        }
+        .testi-avatar {
+            width: 36px; height: 36px; border-radius: 50%;
+            background: var(--sand); flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-serif); font-size: var(--t-sm);
+            font-weight: 600; color: var(--ink);
+        }
+        .testi-name { display: block; font-size: var(--t-sm); font-weight: 500; color: var(--ink); }
+        .testi-role { font-size: var(--t-xs); color: var(--gold); letter-spacing: 0.05em; }
+        .testi-stars { margin-left: auto; color: var(--gold); font-size: 0.7rem; letter-spacing: 2px; }
+
+        /* ======= CÓMO LLEGAR ======= */
+        .como-llegar { padding: var(--s32) 0; background: var(--surface); position: relative; }
+        .como-llegar::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--vermilion), var(--gold), var(--vermilion));
+        }
+        .cl-inner {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: var(--s16); align-items: start;
+        }
+        .cl-eyebrow {
+            font-size: var(--t-xs); letter-spacing: 0.26em;
+            text-transform: uppercase; color: var(--vermilion);
+            margin-bottom: var(--s4);
+        }
+        .cl-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 4vw, 2.75rem);
+            font-weight: 500; color: var(--ink);
+            line-height: 1.3; margin-bottom: var(--s2);
+        }
+        .cl-title-jp {
+            font-family: var(--font-serif);
+            font-size: var(--t-lg); color: var(--gold);
+            letter-spacing: 0.2em; margin-bottom: var(--s8);
+        }
+        .cl-text { font-size: var(--t-md); color: #4e4e4e; line-height: 1.85; margin-bottom: var(--s6); }
+
+        .cl-info { display: flex; flex-direction: column; gap: var(--s5); }
+        .info-row { display: flex; gap: var(--s4); align-items: flex-start; }
+        .info-ico {
+            width: 40px; height: 40px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            border: 1px solid var(--border); color: var(--gold);
+        }
+        .info-strong { display: block; font-size: var(--t-sm); font-weight: 500; color: var(--ink); margin-bottom: 2px; }
+        .info-val { font-size: var(--t-sm); color: #686868; line-height: 1.6; }
+
+        .cl-transport {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: var(--s3); margin-top: var(--s6);
+        }
+        .transport-item {
+            display: flex; align-items: flex-start; gap: var(--s3);
+            padding: var(--s4); background: var(--warm-white);
+            border: 1px solid var(--border);
+        }
+        .transport-ico {
+            width: 28px; height: 28px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--gold);
+        }
+        .transport-label { display: block; font-size: var(--t-xs); font-weight: 500; color: var(--ink); }
+        .transport-val { font-size: var(--t-xs); color: #686868; line-height: 1.5; }
+
+        .cl-map-wrap { position: relative; overflow: hidden; line-height: 0; touch-action: pan-y; }
+        .cl-map-wrap img {
+            width: 100%; height: auto; display: block;
+            transform-origin: center center;
+            user-select: none; -webkit-user-select: none;
+            will-change: transform;
+        }
+        .map-zoom-hint {
+            position: absolute; bottom: var(--s3); left: 50%;
+            transform: translateX(-50%);
+            background: rgba(26,31,58,0.72);
+            color: rgba(244,237,224,0.82);
+            font-size: 0.65rem; letter-spacing: 0.1em;
+            padding: var(--s1) var(--s4);
+            pointer-events: none; white-space: nowrap;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            transition: opacity 0.4s;
+            z-index: 2;
+        }
+        @media (hover: hover) { .map-zoom-hint { display: none; } }
+        .cl-map-caption {
+            margin-top: var(--s4); font-size: var(--t-xs);
+            color: #888; letter-spacing: 0.06em; text-align: center;
+        }
+
+        /* ======= FOOTER ======= */
+        .footer { background: var(--ink); color: rgba(244,237,224,0.55); padding: var(--s16) 0 var(--s8); }
+        .footer-grid {
+            display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: var(--s12); padding-bottom: var(--s12);
+            margin-bottom: var(--s8);
+            border-bottom: 1px solid rgba(244,237,224,0.07);
+        }
+        .footer-brand-jp {
+            font-family: var(--font-serif); font-size: var(--t-2xl);
+            font-weight: 600; color: var(--cream); letter-spacing: 0.1em; margin-bottom: var(--s2);
+        }
+        .footer-brand-es {
+            font-family: var(--font-serif); font-size: var(--t-xs);
+            letter-spacing: 0.26em; color: var(--gold);
+            text-transform: uppercase; margin-bottom: var(--s4);
+        }
+        .footer-desc { font-size: var(--t-sm); color: rgba(244,237,224,0.4); line-height: 1.72; }
+
+        .footer-col-title {
+            font-size: var(--t-xs); letter-spacing: 0.22em;
+            text-transform: uppercase; color: var(--gold); margin-bottom: var(--s5);
+        }
+        .footer-links { list-style: none; display: flex; flex-direction: column; gap: var(--s3); }
+        .footer-links a { font-size: var(--t-sm); color: rgba(244,237,224,0.45); transition: color 0.22s; }
+        .footer-links a:hover { color: var(--cream); }
+
+        .footer-bottom {
+            display: flex; justify-content: space-between;
+            align-items: center; flex-wrap: wrap; gap: var(--s4);
+        }
+        .footer-copy { font-size: var(--t-xs); color: rgba(244,237,224,0.28); letter-spacing: 0.04em; }
+        .footer-social { display: flex; gap: var(--s3); }
+        .social-btn {
+            width: 36px; height: 36px;
+            border: 1px solid rgba(244,237,224,0.14);
+            display: flex; align-items: center; justify-content: center;
+            color: rgba(244,237,224,0.38); transition: all 0.22s;
+        }
+        .social-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+
+        /* ======= RESPONSIVE ======= */
+        @media (max-width: 1024px) {
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: var(--s8); }
+        }
+        @media (max-width: 768px) {
+            .nav-links, .nav-cta { display: none; }
+            .hamburger { display: flex; }
+
+            /* ---- letra-espaciado reducido en mobile ---- */
+            .section-eyebrow,
+            .about-eyebrow,
+            .exp-eyebrow,
+            .cl-eyebrow {
+                letter-spacing: 0.10em;
+                font-size: 0.68rem;
+                gap: var(--s2);
+            }
+            .section-eyebrow::before, .section-eyebrow::after,
+            .about-eyebrow::after,
+            .exp-eyebrow::after {
+                width: 18px;
+            }
+            .section-title-jp,
+            .cl-title-jp,
+            .about-title-jp { letter-spacing: 0.12em; }
+            .hero-irasshaimase { letter-spacing: 0.06em; padding: var(--s2) var(--s4); font-size: 0.72rem; white-space: nowrap; flex-wrap: nowrap; max-width: calc(100vw - 2rem); overflow: hidden; }
+            .hero-brand { letter-spacing: 0.08em; padding-bottom: var(--s1); margin-bottom: var(--s1); }
+            .hero-brand-jp { letter-spacing: 0.16em; margin-bottom: var(--s4); }
+
+            .about-inner, .cl-inner { grid-template-columns: 1fr; gap: var(--s6); }
+            .exp-inner  { grid-template-columns: 1fr; gap: var(--s10); }
+            .about { padding-bottom: var(--s6); }
+            .about-sig { margin-top: var(--s4); padding-top: var(--s4); }
+            .about-img-wrap { order: -1; width: 100%; margin: 0 auto; }
+            .about-img-wrap img { width: 100%; min-height: 320px; object-fit: cover; object-position: center top; }
+            .testi-grid { grid-template-columns: 1fr; }
+            .form-row  { grid-template-columns: 1fr; }
+            .exp-stats { grid-template-columns: 1fr 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: var(--s8); }
+            .experience::after { display: none; }
+        }
+        @media (max-width: 480px) {
+            .hero-actions { flex-direction: column; align-items: center; }
+            .exp-stats { grid-template-columns: 1fr 1fr; }
+            .hero-irasshaimase { flex-direction: column; gap: 0.15rem; letter-spacing: 0.08em; font-size: 0.78rem; }
+            .hero-irasshaimase span:nth-child(2) { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+
+<div id="scrollProgress" class="scroll-progress" aria-hidden="true"></div>
+
+<!-- ============================================================
+     MOBILE MENU
+============================================================ -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menú de navegación">
+    <a href="#inicio"      onclick="closeMenu()">Inicio</a>
+    <a href="#historia"    onclick="closeMenu()">Nuestra Historia</a>
+    <a href="#menu"        onclick="closeMenu()">Menú</a>
+    <a href="#sandwiches"  onclick="closeMenu()">Sándwiches</a>
+    <a href="#como-llegar" onclick="closeMenu()">Cómo Llegar</a>
+</div>
+
+<!-- ============================================================
+     NAVIGATION
+============================================================ -->
+<header class="nav" id="mainNav" role="banner">
+    <a href="#inicio" class="nav-logo" aria-label="Iejima Bentoya — inicio">
+        <span class="nav-logo-jp">IEJIMA BENTOYA</span>
+        <span class="nav-logo-es" lang="ja">伊江島弁当屋</span>
+    </a>
+    <nav aria-label="Navegación principal">
+        <ul class="nav-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#historia">Nuestra Historia</a></li>
+            <li><a href="#menu">Menú</a></li>
+            <li><a href="#sandwiches">Sándwiches</a></li>
+            <li><a href="#experiencia">Filosofía</a></li>
+            <li><a href="#como-llegar">Cómo Llegar</a></li>
+        </ul>
+    </nav>
+    <a href="#como-llegar" class="nav-cta">Visitarnos</a>
+    <button class="hamburger" id="hamburgerBtn" onclick="toggleMenu()" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+    </button>
+</header>
+
+<main id="inicio">
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<section class="hero" aria-labelledby="hero-heading">
+    <div class="hero-bg" aria-hidden="true">
+        <video class="hero-video" autoplay loop muted playsinline poster="Assets/Mapa.jpg">
+            <source src="Assets/hero.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="hero-content">
+        <p class="hero-irasshaimase" aria-label="Irasshaimase, bienvenidos">
+            <span lang="ja">いらっしゃいませ</span>
+            <span>—</span>
+            <span>Irasshaimase · Bienvenidos</span>
+        </p>
+        <h1 id="hero-heading" class="hero-brand">IEJIMA BENTOYA</h1>
+        <p class="hero-brand-jp" lang="ja">伊江島弁当屋</p>
+        <p class="hero-tagline">
+            Cocina tradicional de Okinawa
+        </p>
+        <p class="hero-disclaimer">
+            no sushi- no ramen-
+            <em>Aquí servimos verdadera tradición de Japon</em>
+        </p>
+        <div class="hero-actions">
+            <a href="#menu"        class="btn-primary">Ver Menú</a>
+            <a href="#como-llegar" class="btn-outline">Cómo Llegar</a>
+        </div>
+    </div>
+
+    <div class="hero-scroll" aria-hidden="true">
+        <span>Descubrir</span>
+        <svg width="14" height="22" viewBox="0 0 14 22" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M7 3 L7 19 M1 13 L7 19 L13 13"/>
+        </svg>
+    </div>
+</section>
+
+<!-- ============================================================
+     PHILOSOPHY STRIP
+============================================================ -->
+<section class="philosophy-strip" aria-label="Filosofía Nuchi Gusui">
+    <div class="container">
+        <blockquote class="philosophy-quote">
+            "La comida es medicina para el alma"
+            <span class="jp" lang="ja">ぬちぐすい — Nuchi Gusui</span>
+        </blockquote>
+        <p class="philosophy-sub">Tradición de Okinawa en cada plato</p>
+    </div>
+</section>
+
+<!-- ============================================================
+     NUESTRA HISTORIA
+============================================================ -->
+<section class="about grain" id="historia" aria-labelledby="historia-heading">
+    <div class="container">
+
+        <div class="about-header fade-up">
+            <p class="about-eyebrow">Nuestra Historia · 私たちの物語</p>
+            <h2 id="historia-heading" class="about-title">Un sueño compartido</h2>
+            <p class="about-title-jp" lang="ja">共に見た夢</p>
+        </div>
+
+        <div class="about-inner">
+
+            <div class="about-img-wrap fade-in">
+                <img
+                    src="Assets/Cuadro3.png"
+                    alt="Placa de madera tradicional con las máscaras Hyottoko y Okame — símbolo japonés de alegría, buena fortuna y la unión complementaria de la pareja fundadora"
+                    loading="lazy" width="640" height="427"
+                >
+            </div>
+
+            <div class="about-content fade-up">
+                <p class="about-text">
+                    En un rincón del restaurante, un cuadro custodia el sueño de <strong>Joshi y Deisi</strong>. Para los esposos, este cuadro es un amuleto de prosperidad. Mientras la obra evoca el esfuerzo apasionado de <strong>Joshi</strong> por mantener vivo el fuego de la cocina tradicional, también refleja la calidez con la que <strong>Deisi</strong> recibe a cada comensal. Entre el aroma de hogar y la ilusión del presente, el cuadro les recuerda cada día que su restaurante no solo sirve comida, sino una promesa de futuro y herencia compartida.
+                </p>
+
+                <p class="about-note">
+                    Gracias por visitarnos, esperar con paciencia y disfrutar de nuestra mesa. Tu presencia es parte de este sueño.
+                </p>
+
+                <div class="about-sig">
+                    <div>
+                        <div class="about-sig-name">Yoshi &amp; Deisi</div>
+                        <div class="about-sig-role">Fundadores · 創業者</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<div class="section-sep section-sep--cr" aria-hidden="true">
+    <span class="sep-line"></span>
+    <span class="sep-mark">◆ ◆ ◆</span>
+    <span class="sep-line"></span>
+</div>
+
+<!-- ============================================================
+     MENÚ
+============================================================ -->
+<section class="menu grain" id="menu" aria-labelledby="menu-heading">
+
+    <div class="menu-hero fade-up">
+        <div class="container">
+            <p class="section-eyebrow">Cocina auténtica tradicional de Okinawa · 沖縄の伝統的な本格料理</p>
+            <h2 id="menu-heading" class="section-title">Platos Fuertes</h2>
+            <p class="section-title-jp" lang="ja">メインディッシュ</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <ul class="dish-list fade-up" role="list">
+
+            <li class="dish-list-item">
+                <div class="dish-list-row">
+                    <div style="flex-shrink:0">
+                        <h3 class="dish-list-name">Chicken Lanban</h3>
+                        <span class="dish-list-jp" lang="ja">チキン南蛮</span>
+                    </div>
+                    <span class="dish-list-dots" aria-hidden="true"></span>
+                    <span class="dish-list-price">$18.000</span>
+                </div>
+                <p class="dish-list-desc">Pollo frito en salsa agridulce con tártara artesanal</p>
+            </li>
+
+            <li class="dish-list-item">
+                <div class="dish-list-row">
+                    <div style="flex-shrink:0">
+                        <h3 class="dish-list-name">Karage</h3>
+                        <span class="dish-list-jp" lang="ja">唐揚げ</span>
+                    </div>
+                    <span class="dish-list-dots" aria-hidden="true"></span>
+                    <span class="dish-list-price">$18.000</span>
+                </div>
+                <p class="dish-list-desc">Pollo marinado y frito, corteza dorada y crujiente</p>
+            </li>
+
+            <li class="dish-list-item">
+                <div class="dish-list-row">
+                    <div style="flex-shrink:0">
+                        <h3 class="dish-list-name">Santori</h3>
+                        <span class="dish-list-jp" lang="ja">サントリ</span>
+                    </div>
+                    <span class="dish-list-dots" aria-hidden="true"></span>
+                    <span class="dish-list-price">$18.000</span>
+                </div>
+                <p class="dish-list-desc">Pollo en yogur japonés, diversas especias y picantico</p>
+            </li>
+
+            <li class="dish-list-item">
+                <div class="dish-list-row">
+                    <div style="flex-shrink:0">
+                        <h3 class="dish-list-name">Famichi</h3>
+                        <span class="dish-list-jp" lang="ja">ファミチ</span>
+                    </div>
+                    <span class="dish-list-dots" aria-hidden="true"></span>
+                    <span class="dish-list-price">$18.000</span>
+                </div>
+                <p class="dish-list-desc">Pollo con salsa bechamel</p>
+            </li>
+
+            <li class="dish-list-item">
+                <div class="dish-list-row">
+                    <div style="flex-shrink:0">
+                        <h3 class="dish-list-name">Tonkatsu</h3>
+                        <span class="dish-list-jp" lang="ja">豚カツ</span>
+                    </div>
+                    <span class="dish-list-dots" aria-hidden="true"></span>
+                    <span class="dish-list-price">$18.000</span>
+                </div>
+                <p class="dish-list-desc">Chuleta de cerdo empanizada en panko con salsa casera</p>
+            </li>
+
+            <li class="dish-list-item">
+                <div class="dish-list-row">
+                    <div style="flex-shrink:0">
+                        <h3 class="dish-list-name">Chogayki</h3>
+                        <span class="dish-list-jp" lang="ja">チョガイキ</span>
+                    </div>
+                    <span class="dish-list-dots" aria-hidden="true"></span>
+                    <span class="dish-list-price">$18.000</span>
+                </div>
+                <p class="dish-list-desc">Lomo de cerdo con salsa agridulce</p>
+            </li>
+
+            <li class="dish-list-item">
+                <div class="dish-list-row">
+                    <div style="flex-shrink:0">
+                        <h3 class="dish-list-name">Sakana Ryori</h3>
+                        <span class="dish-list-jp" lang="ja">魚料理</span>
+                    </div>
+                    <span class="dish-list-dots" aria-hidden="true"></span>
+                    <span class="dish-list-price">$18.000</span>
+                </div>
+                <p class="dish-list-desc">Pescado del día al estilo nimono tradicional</p>
+            </li>
+
+        </ul>
+    </div>
+    <div class="menu-special fade-up" role="note">
+        <span class="menu-special-jp" lang="ja">週末スペシャル</span>
+        <span class="menu-special-text">🌸 Pregunta por el <em style="color:var(--gold-light);font-style:normal;font-weight:600">plato especial</em> de fin de semana 🌸</span>
+        <span class="menu-special-dots" aria-hidden="true">◆ ◆ ◆</span>
+    </div>
+    <p class="menu-disclaimer">* Todos nuestros platos fuertes vienen acompañados de sopa y arroz tradicional. &nbsp;·&nbsp; <span lang="ja">メインディッシュにはスープと伝統的なご飯が付きます。</span></p>
+</section>
+
+<div class="section-sep section-sep--cr" aria-hidden="true">
+    <span class="sep-line"></span>
+    <span class="sep-mark">◆ ◆ ◆</span>
+    <span class="sep-line"></span>
+</div>
+
+<!-- ============================================================
+     SÁNDWICHES
+============================================================ -->
+<section class="sandwiches grain" id="sandwiches" aria-labelledby="sandwiches-heading">
+
+    <div class="sandwiches-hero fade-up">
+        <div class="container">
+            <h2 id="sandwiches-heading" class="section-title">Sándwiches</h2>
+            <p class="section-title-jp" lang="ja">サンドイッチ</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <ul class="dish-list fade-up" role="list">
+
+            <li class="dish-list-item">
+                <div class="dish-list-row">
+                    <div style="flex-shrink:0">
+                        <h3 class="dish-list-name">Tegetonka</h3>
+                        <span class="dish-list-jp" lang="ja">タゲトンカ</span>
+                    </div>
+                    <span class="dish-list-dots" aria-hidden="true"></span>
+                    <span class="dish-list-price">$15.000</span>
+                </div>
+                <p class="dish-list-desc">Sándwich de cerdo al estilo tonkatsu con salsa especial</p>
+            </li>
+
+            <li class="dish-list-item">
+                <div class="dish-list-row">
+                    <div style="flex-shrink:0">
+                        <h3 class="dish-list-name">Taguekatsu</h3>
+                        <span class="dish-list-jp" lang="ja">タゲカツ</span>
+                    </div>
+                    <span class="dish-list-dots" aria-hidden="true"></span>
+                    <span class="dish-list-price">$15.000</span>
+                </div>
+                <p class="dish-list-desc">Sándwich de pollo katsu con mayonesa</p>
+            </li>
+
+            <li class="dish-list-item">
+                <div class="dish-list-row">
+                    <div style="flex-shrink:0">
+                        <h3 class="dish-list-name">Teguesaka</h3>
+                        <span class="dish-list-jp" lang="ja">テゲサカ</span>
+                    </div>
+                    <span class="dish-list-dots" aria-hidden="true"></span>
+                    <span class="dish-list-price">$15.000</span>
+                </div>
+                <p class="dish-list-desc">Sándwich de pescado marinado con vegetales frescos</p>
+            </li>
+
+        </ul>
+    </div>
+
+</section>
+
+<div class="section-sep section-sep--sf" aria-hidden="true">
+    <span class="sep-line"></span>
+    <span class="sep-mark">◆ ◆ ◆</span>
+    <span class="sep-line"></span>
+</div>
+
+<!-- ============================================================
+     CÓMO LLEGAR
+============================================================ -->
+<section class="como-llegar" id="como-llegar" aria-labelledby="cl-heading">
+    <div class="container">
+        <div class="cl-inner">
+
+            <div class="fade-up">
+                <p class="cl-eyebrow">Cómo Llegar · アクセス</p>
+                <h2 id="cl-heading" class="cl-title">
+                    Encuéntranos y<br>
+                    ven a visitarnos
+                </h2>
+                <p class="cl-title-jp" lang="ja">お気軽にお越しください</p>
+                <p class="cl-text">
+                    Estamos ubicados en el corazón de la ciudad, accesibles en transporte
+                    público, en auto o a pie. Te esperamos con los brazos abiertos y
+                    el aroma de Okinawa listo para recibirte.
+                </p>
+
+                <div class="cl-info">
+                    <div class="info-row">
+                        <div class="info-ico" aria-hidden="true">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <span class="info-strong">Dirección</span>
+                            <span class="info-val">Carrera 5A # 22-21<br>Fusagasugá, Cundinamarca</span>
+                        </div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-ico" aria-hidden="true">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <span class="info-strong">Horarios</span>
+                            <span class="info-val">Mar–Dom: 11:00 – 18:00 · Lunes cerrado</span>
+                        </div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-ico" aria-hidden="true">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <span class="info-strong">Contacto</span>
+                            <span class="info-val">+52 55 1234 5678<br>hola@iejimabentoya.mx</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Mapa -->
+            <div class="cl-map-wrap fade-up" style="transition-delay:0.2s">
+                <img
+                    src="Assets/MapaOK_todo.png"
+                    alt="Mapa de ubicación de Iejima Bentoya — Carrera 5A #22-21, Fusagasugá, Cundinamarca"
+                    loading="lazy"
+                >
+                <div class="map-zoom-hint" id="mapHint" aria-hidden="true">Pellizca para ampliar · doble toque para restablecer</div>
+            </div>
+            <p class="cl-map-caption">
+                Carrera 5A # 22-21 · Fusagasugá, Cundinamarca
+                <span aria-hidden="true"> · </span>
+                <a href="https://maps.app.goo.gl/PFyrNbmGiJDifBDi6" target="_blank" rel="noopener noreferrer" style="color:var(--gold)">Abrir en Google Maps</a>
+            </p>
+
+        </div>
+    </div>
+</section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer class="footer" role="contentinfo">
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-brand-jp">IEJIMA BENTOYA</div>
+                <div class="footer-brand-es" lang="ja">伊江島弁当屋</div>
+                <p class="footer-desc">
+                    Cocina tradicional de las islas Ryukyu con raíces en la cultura
+                    de Okinawa.
+                </p>
+            </div>
+            <div>
+                <h4 class="footer-col-title">Menú</h4>
+                <ul class="footer-links">
+                    <li><a href="#menu">Chicken Lanban</a></li>
+                    <li><a href="#menu">Karage</a></li>
+                    <li><a href="#menu">Tonkatsu</a></li>
+                    <li><a href="#menu">Sakana Ryori</a></li>
+                    <li><a href="#sandwiches">Tegetonka</a></li>
+                    <li><a href="#sandwiches">Teguekatsu</a></li>
+                    <li><a href="#sandwiches">Teguesaka</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-col-title">Restaurante</h4>
+                <ul class="footer-links">
+                    <li><a href="#historia">Nuestra Historia</a></li>
+                        <li><a href="#como-llegar">Cómo Llegar</a></li>
+                    <li><a href="#como-llegar">Horarios</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-col-title">Contacto</h4>
+                <ul class="footer-links">
+                    <li><a href="tel:+525512345678">+52 55 1234 5678</a></li>
+                    <li><a href="mailto:hola@iejimabentoya.mx">hola@iejimabentoya.mx</a></li>
+                    <li><a href="#como-llegar">Cra 5A # 22-21, Fusagasugá</a></li>
+                    <li><a href="#como-llegar">Mar–Dom: 13:00–22:00</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="footer-copy">
+                &copy; 2025 IEJIMA BENTOYA · <span lang="ja">伊江島弁当屋</span>.
+                Todos los derechos reservados. Hecho con amor en México.
+            </p>
+            <div class="footer-social" aria-label="Redes sociales">
+                <a href="#" class="social-btn" aria-label="Instagram">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                        <rect x="2" y="2" width="20" height="20" rx="5"/>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                    </svg>
+                </a>
+                <a href="#" class="social-btn" aria-label="Facebook">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                    </svg>
+                </a>
+                <a href="#" class="social-btn" aria-label="TikTok">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.79 1.54V6.78a4.85 4.85 0 01-1.02-.09z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<button class="back-top" id="backTop" aria-label="Volver al inicio">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M12 19V5M5 12l7-7 7 7"/>
+    </svg>
+</button>
+
+<!-- ============================================================
+     SCRIPTS
+============================================================ -->
+<script>
+    // --- Nav scroll state + scroll progress + back-to-top ---
+    const nav        = document.getElementById('mainNav');
+    const progressEl = document.getElementById('scrollProgress');
+    const backTopEl  = document.getElementById('backTop');
+
+    const onScroll = () => {
+        const sy  = window.scrollY;
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        nav.classList.toggle('scrolled', sy > 55);
+        if (progressEl) progressEl.style.width = (max > 0 ? (sy / max) * 100 : 0) + '%';
+        if (backTopEl)  backTopEl.classList.toggle('visible', sy > 500);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    backTopEl?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // --- Mobile menu ---
+    function openMenu() {
+        document.getElementById('mobileMenu').classList.add('open');
+        document.getElementById('hamburgerBtn').classList.add('is-open');
+        document.getElementById('hamburgerBtn').setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+        document.getElementById('mobileMenu').classList.remove('open');
+        document.getElementById('hamburgerBtn').classList.remove('is-open');
+        document.getElementById('hamburgerBtn').setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+    }
+    function toggleMenu() {
+        document.getElementById('mobileMenu').classList.contains('open') ? closeMenu() : openMenu();
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+    // --- Scroll-reveal animations ---
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -36px 0px' });
+
+    document.querySelectorAll('.fade-up, .fade-in').forEach(el => io.observe(el));
+
+    // --- Pinch-to-zoom + pan on map ---
+    (function () {
+        const wrap = document.querySelector('.cl-map-wrap');
+        if (!wrap) return;
+        const img  = wrap.querySelector('img');
+        const hint = document.getElementById('mapHint');
+        if (!img) return;
+
+        let s = 1, tx = 0, ty = 0;
+        let startS, startTx, startTy, startDist, midX0, midY0;
+        let panAnchor = { x: 0, y: 0 };
+        let gesture = 'none';
+        let lastTap = 0, lastTapX = 0, lastTapY = 0;
+
+        function zoomTo(targetS, pivotX, pivotY) {
+            const ratio = targetS / s;
+            tx = pivotX * (1 - ratio) + tx * ratio;
+            ty = pivotY * (1 - ratio) + ty * ratio;
+            s  = targetS;
+            clamp();
+            render(true);
+        }
+
+        function clamp() {
+            const maxX = wrap.offsetWidth  * (s - 1) / 2;
+            const maxY = wrap.offsetHeight * (s - 1) / 2;
+            tx = Math.max(-maxX, Math.min(maxX, tx));
+            ty = Math.max(-maxY, Math.min(maxY, ty));
+        }
+
+        function render(anim) {
+            img.style.transition   = anim ? 'transform 0.28s ease' : 'none';
+            img.style.transform    = `translate(${tx}px,${ty}px) scale(${s})`;
+            wrap.style.touchAction = s > 1 ? 'none' : 'pan-y';
+        }
+
+        function reset() { s = 1; tx = 0; ty = 0; render(true); }
+
+        wrap.addEventListener('touchstart', e => {
+            if (e.touches.length === 2) {
+                gesture = 'pinch';
+                wrap.style.touchAction = 'none';
+                if (hint) hint.style.opacity = '0';
+                const t0 = e.touches[0], t1 = e.touches[1];
+                startDist = Math.hypot(t0.clientX - t1.clientX, t0.clientY - t1.clientY);
+                const r = wrap.getBoundingClientRect();
+                midX0  = (t0.clientX + t1.clientX) / 2 - r.left - r.width  / 2;
+                midY0  = (t0.clientY + t1.clientY) / 2 - r.top  - r.height / 2;
+                startS = s; startTx = tx; startTy = ty;
+            } else if (e.touches.length === 1 && s > 1.05) {
+                gesture = 'pan';
+                wrap.style.touchAction = 'none';
+                panAnchor = { x: e.touches[0].clientX - tx, y: e.touches[0].clientY - ty };
+            } else {
+                gesture = 'none';
+            }
+        }, { passive: true });
+
+        wrap.addEventListener('touchmove', e => {
+            if (gesture === 'pinch' && e.touches.length >= 2) {
+                e.preventDefault();
+                const t0 = e.touches[0], t1 = e.touches[1];
+                const dist  = Math.hypot(t0.clientX - t1.clientX, t0.clientY - t1.clientY);
+                s = Math.min(Math.max(startS * (dist / startDist), 1), 4);
+                const ratio = s / startS;
+                tx = midX0 * (1 - ratio) + startTx * ratio;
+                ty = midY0 * (1 - ratio) + startTy * ratio;
+                clamp();
+                render(false);
+            } else if (gesture === 'pan' && e.touches.length === 1) {
+                e.preventDefault();
+                tx = e.touches[0].clientX - panAnchor.x;
+                ty = e.touches[0].clientY - panAnchor.y;
+                clamp();
+                render(false);
+            }
+        }, { passive: false });
+
+        wrap.addEventListener('touchend', e => {
+            if (e.touches.length < 2) gesture = 'none';
+            if (s < 1.05) reset();
+
+            if (e.changedTouches.length === 1 && e.touches.length === 0) {
+                const now = Date.now();
+                const ct  = e.changedTouches[0];
+                if (now - lastTap < 300) {
+                    if (s > 1.05) {
+                        reset();
+                    } else {
+                        const r    = wrap.getBoundingClientRect();
+                        const tapX = ct.clientX - r.left - r.width  / 2;
+                        const tapY = ct.clientY - r.top  - r.height / 2;
+                        zoomTo(2.5, tapX, tapY);
+                        if (hint) hint.style.opacity = '0';
+                    }
+                    lastTap = 0;
+                } else {
+                    lastTap = now;
+                }
+            }
+        }, { passive: true });
+    })();
+
+    // --- Smooth anchor scroll (accounts for fixed nav height) ---
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            const id = a.getAttribute('href');
+            let tgt = null;
+            try { tgt = document.querySelector(id); } catch (_) {}
+            if (tgt) {
+                e.preventDefault();
+                const navH = document.querySelector('.nav')?.offsetHeight || 0;
+                const top = tgt.getBoundingClientRect().top + window.pageYOffset - navH;
+                window.scrollTo({ top, behavior: 'smooth' });
+            }
+        });
+    });
+
+
+</script>
+
+</body>
+</html>
