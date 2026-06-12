@@ -3,7 +3,8 @@
     "allow": [
       "Skill(update-config)",
       "Skill(update-config:*)",
-      "Bash(python -c ' *)"
+      "Bash(python -c ' *)",
+      "Bash(git restore *)"
     ],
     "defaultMode": "bypassPermissions"
   }
