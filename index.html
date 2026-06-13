@@ -1003,17 +1003,19 @@
             will-change: transform;
         }
         .map-zoom-hint {
-            position: absolute; bottom: var(--s3); left: 50%;
+            position: absolute; bottom: var(--s4); left: 50%;
             transform: translateX(-50%);
-            background: rgba(26,31,58,0.72);
-            color: rgba(244,237,224,0.82);
-            font-size: 0.65rem; letter-spacing: 0.1em;
-            padding: var(--s1) var(--s4);
+            background: rgba(26,31,58,0.88);
+            color: #fff;
+            font-size: 0.68rem; letter-spacing: 0.08em;
+            padding: var(--s2) var(--s5);
+            border-radius: 20px;
+            border: 1px solid rgba(184,145,42,0.4);
             pointer-events: none; white-space: nowrap;
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
             transition: opacity 0.4s;
-            z-index: 2;
+            z-index: 10;
         }
         @media (hover: hover) { .map-zoom-hint { display: none; } }
         .cl-map-caption {
@@ -1452,7 +1454,7 @@
                 <p class="cl-text">
                     Estamos ubicados en el corazón de la ciudad, accesibles en transporte público, en auto o a pie.
                 </p>
-                <p class="cl-text" style="margin-bottom:var(--s2);font-weight:500;">La referencia más rápida es:</p>
+                <p class="cl-text" style="margin-bottom:var(--s2);font-weight:500;">📍La referencia más rápida es:</p>
                 <ol class="cl-text" style="padding-left:var(--s6);display:flex;flex-direction:column;gap:var(--s2);margin-bottom:var(--s5);">
                     <li>Subiendo por la calle 22, sitúate en el semáforo de la carrera sexta.</li>
                     <li>Sube dos cuadras hasta ver en la esquina el Club Infantil High Garden.</li>
@@ -1570,7 +1572,7 @@
 
 <a
     id="whatsappBtn"
-    href="https://wa.me/573105666098?text=Hola!%20nos%20gustaria%20conocer%20la%20carta! - こんにちは！メニューを見せていただけますか！"
+    href="https://wa.me/573105666098?text=Hola!%20nos%20gustaria%20conocer%20la%20carta! · こんにちは！メニューを見せていただけますか！"
     class="whatsapp-btn"
     target="_blank"
     rel="noopener noreferrer"
@@ -1685,7 +1687,7 @@
             wrap.style.touchAction = s > 1 ? 'none' : 'pan-y';
         }
 
-        function reset() { s = 1; tx = 0; ty = 0; render(true); }
+        function reset() { s = 1; tx = 0; ty = 0; render(true); if (hint) hint.style.opacity = '1'; }
 
         wrap.addEventListener('touchstart', e => {
             if (e.touches.length === 2) {
