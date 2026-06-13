@@ -1621,10 +1621,13 @@
     const waBtn = document.getElementById('whatsappBtn');
     if (waBtn) {
         const waSections = [document.getElementById('inicio'), document.getElementById('como-llegar')];
+        const waVisible = new Set();
         const waObserver = new IntersectionObserver(entries => {
-            const anyVisible = entries.some(e => e.isIntersecting) ||
-                waSections.some(s => s && s.getBoundingClientRect().top < window.innerHeight && s.getBoundingClientRect().bottom > 0);
-            waBtn.classList.toggle('visible', anyVisible);
+            entries.forEach(e => {
+                if (e.isIntersecting) waVisible.add(e.target);
+                else waVisible.delete(e.target);
+            });
+            waBtn.classList.toggle('visible', waVisible.size > 0);
         }, { threshold: 0.1 });
         waSections.forEach(s => { if (s) waObserver.observe(s); });
     }
