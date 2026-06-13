@@ -244,8 +244,11 @@
             border-radius: 50%;
             box-shadow: 0 4px 18px rgba(37,211,102,0.45);
             text-decoration: none;
-            transition: transform 0.25s var(--ease), box-shadow 0.25s;
+            opacity: 0; pointer-events: none;
+            transform: translateY(14px);
+            transition: opacity 0.32s var(--ease), transform 0.32s var(--ease), box-shadow 0.25s;
         }
+        .whatsapp-btn.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
         .whatsapp-btn:hover  { transform: scale(1.08); box-shadow: 0 6px 24px rgba(37,211,102,0.6); }
         .whatsapp-btn:active { transform: scale(0.93); }
 
@@ -1088,6 +1091,10 @@
             .exp-stats { grid-template-columns: 1fr 1fr; }
             .footer-grid { grid-template-columns: 1fr; gap: var(--s8); }
             .experience::after { display: none; }
+            .como-llegar { padding: var(--s10) 0; }
+            .section-sep { padding: var(--s4) var(--s6); }
+            .sandwiches-hero { padding: var(--s2) 0 var(--s10); }
+            .menu-hero { padding: var(--s2) 0 var(--s10); }
         }
         @media (max-width: 480px) {
             .hero-actions { flex-direction: column; align-items: center; }
@@ -1571,6 +1578,7 @@
 </footer>
 
 <a
+    id="whatsappBtn"
     href="https://wa.me/573105666098?text=Hola!%20nos%20gustaria%20conocer%20la%20carta!%20%2F%20こんにちは！メニューを見せていただけますか！"
     class="whatsapp-btn"
     target="_blank"
@@ -1608,6 +1616,18 @@
     onScroll();
 
     backTopEl?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // --- WhatsApp button: visible solo en Hero y Cómo Llegar ---
+    const waBtn = document.getElementById('whatsappBtn');
+    if (waBtn) {
+        const waSections = [document.getElementById('inicio'), document.getElementById('como-llegar')];
+        const waObserver = new IntersectionObserver(entries => {
+            const anyVisible = entries.some(e => e.isIntersecting) ||
+                waSections.some(s => s && s.getBoundingClientRect().top < window.innerHeight && s.getBoundingClientRect().bottom > 0);
+            waBtn.classList.toggle('visible', anyVisible);
+        }, { threshold: 0.1 });
+        waSections.forEach(s => { if (s) waObserver.observe(s); });
+    }
 
     // --- Mobile menu ---
     function openMenu() {
