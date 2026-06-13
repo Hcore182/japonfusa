@@ -1148,7 +1148,7 @@
 <!-- ============================================================
      HERO
 ============================================================ -->
-<section class="hero" aria-labelledby="hero-heading">
+<section class="hero" id="hero" aria-labelledby="hero-heading">
     <div class="hero-bg" aria-hidden="true">
         <video class="hero-video" autoplay loop muted playsinline poster="Assets/Mapa.jpg">
             <source src="Assets/hero.mp4" type="video/mp4">
@@ -1620,7 +1620,7 @@
     // --- WhatsApp button: visible solo en Hero y Cómo Llegar ---
     const waBtn = document.getElementById('whatsappBtn');
     if (waBtn) {
-        const waSections = [document.getElementById('inicio'), document.getElementById('como-llegar')];
+        const waSections = [document.getElementById('hero'), document.getElementById('como-llegar')];
         const waVisible = new Set();
         const waObserver = new IntersectionObserver(entries => {
             entries.forEach(e => {
