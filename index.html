@@ -1111,6 +1111,9 @@
             .form-row  { grid-template-columns: 1fr; }
             .exp-stats { grid-template-columns: 1fr 1fr; }
             .footer-grid { grid-template-columns: 1fr; gap: var(--s8); }
+            .footer-col-contacto { display: none; }
+            .back-top { bottom: var(--s16); }
+            .whatsapp-btn { bottom: var(--s16); }
             .experience::after { display: none; }
             .como-llegar { padding: var(--s10) 0; }
             .section-sep { padding: var(--s4) var(--s6); }
@@ -1207,13 +1210,26 @@
 <!-- ============================================================
      PHILOSOPHY STRIP
 ============================================================ -->
-<section class="philosophy-strip" aria-label="Filosofía Nuchi Gusui">
+<section class="philosophy-strip" aria-label="Filosofía — Yoshi, fundador">
     <div class="container">
         <blockquote class="philosophy-quote">
-            "La comida es medicina para el alma"
-            <span class="jp" lang="ja">ぬちぐすい — Nuchi Gusui</span>
+            <span lang="ja" style="display:block;color:var(--gold);font-size:0.88em;line-height:1.9;letter-spacing:0.14em;margin-bottom:var(--s3);">
+                腹が満ちた者だけが、<br>
+                心の安らぎを感じられる。<br>
+                そして、安らいだ心だけが、<br>
+                真に寛大に与えることができる。
+            </span>
+            <span style="display:block;font-size:0.46em;color:rgba(244,237,224,0.38);letter-spacing:0.06em;line-height:2;margin-bottom:var(--s5);font-style:italic;">
+                Hara ga michita mono dake ga, kokoro no yasuragi wo kanjirarero.<br>
+                Soshite, yasuraida kokoro dake ga, shin ni kandai ni ataeru koto ga dekiru.
+            </span>
+            <span aria-hidden="true" style="display:block;color:var(--gold);opacity:0.5;font-size:0.6em;margin-bottom:var(--s5);letter-spacing:0.5em;">◆</span>
+            <span style="display:block;font-size:0.70em;font-style:italic;line-height:1.85;color:rgba(244,237,224,0.82);">"Solo quien tiene el estómago lleno<br>
+            puede sentir el corazón tranquilo.<br>
+            Y solo el corazón tranquilo<br>
+            es capaz de dar con generosidad."</span>
+            <span class="jp" style="margin-top:var(--s6);font-size:0.52em;letter-spacing:0.24em;">— Yoshi, fundador · 創業者</span>
         </blockquote>
-        <p class="philosophy-sub">Tradición de Okinawa en cada plato</p>
     </div>
 </section>
 
@@ -1556,10 +1572,9 @@
                 <ul class="footer-links">
                     <li><a href="#historia">Nuestra Historia</a></li>
                         <li><a href="#como-llegar">Cómo Llegar</a></li>
-                    <li><a href="#como-llegar">Horarios</a></li>
                 </ul>
             </div>
-            <div>
+            <div class="footer-col-contacto">
                 <h4 class="footer-col-title">Contacto</h4>
                 <ul class="footer-links">
                     <li><a href="tel:+57 310-566-6098">+57 310-566-6098</a></li>
