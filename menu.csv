@@ -1,0 +1,20 @@
+SECCIÓN,NOMBRE,DESCRIPCIÓN
+PLATOS FUERTES,,
+,Chicken Lanban,Pollo frito en salsa agridulce con tártara artesanal
+,Karage,Pollo marinado y frito con corteza dorada y crujiente
+,Santori,Pollo marinado en yogur japonés con especias y toque picante
+,Famichi,Pollo frito bañado en salsa bechamel cremosa
+,Tonkatsu,Cerdo empanizado en panko con salsa tonkatsu casera
+,Chogayki,Lomo de cerdo salteado en salsa agridulce japonesa
+,Sakana Ryori,Trucha cocida al estilo nimono tradicional
+SÁNDWICHES,,
+,Tegetonka,Cerdo crujiente estilo tonkatsu en pan con salsa especial
+,Teguekatsu,Pollo katsu crujiente en pan con mayonesa japonesa
+,Teguesaka,Sándwich de pescado marinado con vegetales frescos
+
+,,
+ESTÁNDAR DE DESCRIPCIONES,,
+,,
+FÓRMULA BASE,,[Proteína] + [método de cocción/preparación] + [salsa o acompañamiento principal]
+EXTENSIÓN,,8 a 12 palabras por descripción
+REGLAS,,Siempre empieza con la proteína (pollo / cerdo / trucha / pescado). Siempre incluye un verbo de preparación. Siempre cierra con la salsa o el acompañamiento clave. Sin diminutivos ni lenguaje informal. Sin adjetivos vagos sin contexto.
