@@ -9,6 +9,15 @@
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta name="referrer" content="strict-origin-when-cross-origin">
 
+    <!-- Google Analytics 4 — G-F9P2M2ST73 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F9P2M2ST73"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-F9P2M2ST73');
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -1159,8 +1168,8 @@
             <li><a href="#como-llegar">Cómo Llegar</a></li>
         </ul>
     </nav>
-    <a href="#como-llegar" class="nav-cta">Visitarnos</a>
-    <button class="hamburger" id="hamburgerBtn" onclick="toggleMenu()" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobileMenu">
+    <a href="#como-llegar" class="nav-cta" data-track="nav_visitarnos">Visitarnos</a>
+    <button class="hamburger" id="hamburgerBtn" onclick="toggleMenu()" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobileMenu" data-track="hamburger_menu">
         <span></span><span></span><span></span>
     </button>
 </header>
@@ -1190,8 +1199,8 @@
             Cocina tradicional de Okinawa
         </p>
         <div class="hero-actions">
-            <a href="#menu"        class="btn-primary">Ver Menú <span style="display:block;font-size:0.6em;letter-spacing:0.14em;opacity:0.82;font-weight:400;">メニューを見る</span></a>
-            <a href="#como-llegar" class="btn-outline">Cómo Llegar <span style="display:block;font-size:0.6em;letter-spacing:0.14em;opacity:0.82;font-weight:400;">アクセス</span></a>
+            <a href="#menu"        class="btn-primary" data-track="hero_ver_menu">Ver Menú <span style="display:block;font-size:0.6em;letter-spacing:0.14em;opacity:0.82;font-weight:400;">メニューを見る</span></a>
+            <a href="#como-llegar" class="btn-outline" data-track="hero_como_llegar">Cómo Llegar <span style="display:block;font-size:0.6em;letter-spacing:0.14em;opacity:0.82;font-weight:400;">アクセス</span></a>
         </div>
     </div>
 
@@ -1531,7 +1540,7 @@
                 <div class="map-zoom-hint" id="mapHint" aria-hidden="true">Pellizca para ampliar · doble toque para restablecer</div>
             </div>
             <p class="cl-map-caption">
-                <a href="https://maps.app.goo.gl/Rqzc8BNZKX9Ymkya8" target="_blank" rel="noopener noreferrer" style="color:var(--gold);font-size:1.05em;font-weight:600;letter-spacing:0.04em;">↗ Abrir en Google Maps</a>
+                <a href="https://maps.app.goo.gl/Rqzc8BNZKX9Ymkya8" target="_blank" rel="noopener noreferrer" style="color:var(--gold);font-size:1.05em;font-weight:600;letter-spacing:0.04em;" data-track="google_maps">↗ Abrir en Google Maps</a>
             </p>
 
         </div>
@@ -1594,6 +1603,7 @@
     target="_blank"
     rel="noopener noreferrer"
     aria-label="Contactar por WhatsApp"
+    data-track="whatsapp_flotante"
 >
     <div class="wa-bubble">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -1772,6 +1782,15 @@
             }
         }, { passive: true });
     })();
+
+    // --- CTA click tracking (GA4 custom events) ---
+    document.querySelectorAll('[data-track]').forEach(el => {
+        el.addEventListener('click', () => {
+            if (typeof gtag === 'function') {
+                gtag('event', 'cta_click', { button_name: el.dataset.track });
+            }
+        });
+    });
 
     // --- Smooth anchor scroll (accounts for fixed nav height) ---
     document.querySelectorAll('a[href^="#"]').forEach(a => {
