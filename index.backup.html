@@ -5,18 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IEJIMA BENTOYA — 伊江島弁当屋 | Cocina Japonesa Okinawense</title>
     <meta name="description" content="IEJIMA BENTOYA — Cocina tradicional de las islas Ryukyu en México. Chicken Nanban, Karage, Tonkatsu y Sakana Ryori. Auténtica gastronomía okinawense.">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://region1.analytics.google.com https://region1.google-analytics.com; frame-src 'none'; object-src 'none'; base-uri 'self'">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; script-src 'self' 'unsafe-inline'; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'self'">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta name="referrer" content="strict-origin-when-cross-origin">
-
-    <!-- Google Analytics 4 — G-F9P2M2ST73 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F9P2M2ST73"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-F9P2M2ST73');
-    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1133,93 +1124,6 @@
             .hero-irasshaimase { flex-direction: column; gap: 0.15rem; letter-spacing: 0.08em; font-size: 0.78rem; }
             .hero-irasshaimase span:nth-child(2) { display: none; }
         }
-
-        /* ======= DISH MODAL ======= */
-        .dish-modal-trigger {
-            cursor: pointer;
-            display: inline-flex; align-items: center; gap: var(--s2);
-            transition: color 0.2s;
-        }
-        .dish-modal-trigger:hover,
-        .dish-modal-trigger:focus-visible { color: var(--vermilion); outline: none; }
-        .dish-modal-trigger::after {
-            content: '';
-            display: inline-block; width: 15px; height: 15px; flex-shrink: 0;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='%23b8912a' stroke-width='2'%3E%3Cpath d='M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z'/%3E%3Ccircle cx='12' cy='13' r='4'/%3E%3C/svg%3E");
-            background-repeat: no-repeat; background-size: contain;
-            opacity: 0.55; transition: opacity 0.2s;
-        }
-        .dish-modal-trigger:hover::after { opacity: 1; }
-
-        .dish-modal-overlay {
-            position: fixed; inset: 0; z-index: 200;
-            background: rgba(26,31,58,0.90);
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            display: flex; align-items: center; justify-content: center;
-            padding: var(--s6);
-            opacity: 0; visibility: hidden;
-            transition: opacity 0.32s var(--ease), visibility 0s linear 0.32s;
-        }
-        .dish-modal-overlay.open {
-            opacity: 1; visibility: visible;
-            transition: opacity 0.32s var(--ease);
-        }
-        .dish-modal {
-            background: var(--warm-white);
-            max-width: 460px; width: 100%;
-            position: relative;
-            transform: scale(0.92) translateY(22px);
-            transition: transform 0.32s var(--ease);
-            box-shadow: 0 28px 80px rgba(0,0,0,0.60);
-        }
-        .dish-modal-overlay.open .dish-modal { transform: scale(1) translateY(0); }
-        .dish-modal-img {
-            width: 100%; aspect-ratio: 4/3;
-            object-fit: cover; display: block;
-        }
-        .dish-modal-body {
-            padding: var(--s6) var(--s8) var(--s8);
-            border-top: 2px solid var(--gold);
-        }
-        .dish-modal-name {
-            font-family: var(--font-display);
-            font-size: var(--t-2xl); font-weight: 500;
-            color: var(--ink); margin-bottom: var(--s1);
-        }
-        .dish-modal-jp {
-            font-family: var(--font-serif);
-            font-size: var(--t-xs); color: var(--gold);
-            letter-spacing: 0.18em; display: block; margin-bottom: var(--s3);
-        }
-        .dish-modal-desc { font-size: var(--t-sm); color: #686868; line-height: 1.7; }
-        .dish-modal-close {
-            position: absolute; top: var(--s3); right: var(--s3);
-            width: 36px; height: 36px;
-            background: rgba(26,31,58,0.72);
-            border: 1px solid rgba(184,145,42,0.35);
-            color: var(--cream);
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer; z-index: 1;
-            transition: background 0.2s, border-color 0.2s;
-        }
-        .dish-modal-close:hover { background: var(--vermilion); border-color: var(--vermilion); }
-        .dish-modal-close:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
-
-        /* Modal con fondo personalizado */
-        .dish-modal-overlay.has-bg {
-            background-image: linear-gradient(rgba(20,14,6,0.18), rgba(20,14,6,0.18)), var(--modal-bg-url);
-            background-size: cover;
-            background-position: center;
-            backdrop-filter: none; -webkit-backdrop-filter: none;
-        }
-        .dish-modal-overlay.has-bg .dish-modal {
-            background: rgba(244,237,224,0.86);
-            backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-            border: 1px solid rgba(184,145,42,0.30);
-            box-shadow: 0 28px 80px rgba(0,0,0,0.45), 0 0 0 1px rgba(184,145,42,0.12);
-        }
-        .dish-modal-overlay.has-bg .dish-modal-name { color: var(--ink); }
-        .dish-modal-overlay.has-bg .dish-modal-desc { color: #5a4a38; }
     </style>
 </head>
 <body>
@@ -1255,8 +1159,8 @@
             <li><a href="#como-llegar">Cómo Llegar</a></li>
         </ul>
     </nav>
-    <a href="#como-llegar" class="nav-cta" data-track="nav_visitarnos">Visitarnos</a>
-    <button class="hamburger" id="hamburgerBtn" onclick="toggleMenu()" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobileMenu" data-track="hamburger_menu">
+    <a href="#como-llegar" class="nav-cta">Visitarnos</a>
+    <button class="hamburger" id="hamburgerBtn" onclick="toggleMenu()" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobileMenu">
         <span></span><span></span><span></span>
     </button>
 </header>
@@ -1286,8 +1190,8 @@
             Cocina tradicional de Okinawa
         </p>
         <div class="hero-actions">
-            <a href="#menu"        class="btn-primary" data-track="hero_ver_menu">Ver Menú <span style="display:block;font-size:0.6em;letter-spacing:0.14em;opacity:0.82;font-weight:400;">メニューを見る</span></a>
-            <a href="#como-llegar" class="btn-outline" data-track="hero_como_llegar">Cómo Llegar <span style="display:block;font-size:0.6em;letter-spacing:0.14em;opacity:0.82;font-weight:400;">アクセス</span></a>
+            <a href="#menu"        class="btn-primary">Ver Menú <span style="display:block;font-size:0.6em;letter-spacing:0.14em;opacity:0.82;font-weight:400;">メニューを見る</span></a>
+            <a href="#como-llegar" class="btn-outline">Cómo Llegar <span style="display:block;font-size:0.6em;letter-spacing:0.14em;opacity:0.82;font-weight:400;">アクセス</span></a>
         </div>
     </div>
 
@@ -1394,13 +1298,7 @@
             <li class="dish-list-item">
                 <div class="dish-list-row">
                     <div style="flex-shrink:0">
-                        <h3 class="dish-list-name dish-modal-trigger"
-                            data-img="Assets/Chicken_Nanban2.png"
-                            data-name="Chicken Lanban"
-                            data-jp="チキン南蛮"
-                            data-desc="Pollo frito en salsa agridulce con tártara artesanal"
-                            data-bg="Assets/BackgroundPlatos.png"
-                            tabindex="0" role="button" aria-haspopup="dialog">Chicken Lanban</h3>
+                        <h3 class="dish-list-name">Chicken Lanban</h3>
                         <span class="dish-list-jp" lang="ja">チキン南蛮</span>
                     </div>
                     <span class="dish-list-dots" aria-hidden="true"></span>
@@ -1616,7 +1514,7 @@
                         </div>
                         <div>
                             <span class="info-strong">Contacto</span>
-                            <span class="info-val">+57 311-203-1628<br></span>
+                            <span class="info-val">+57 310-566-6098<br></span>
                         </div>
                     </div>
                 </div>
@@ -1633,7 +1531,7 @@
                 <div class="map-zoom-hint" id="mapHint" aria-hidden="true">Pellizca para ampliar · doble toque para restablecer</div>
             </div>
             <p class="cl-map-caption">
-                <a href="https://maps.app.goo.gl/Rqzc8BNZKX9Ymkya8" target="_blank" rel="noopener noreferrer" style="color:var(--gold);font-size:1.05em;font-weight:600;letter-spacing:0.04em;" data-track="google_maps">↗ Abrir en Google Maps</a>
+                <a href="https://maps.app.goo.gl/Rqzc8BNZKX9Ymkya8" target="_blank" rel="noopener noreferrer" style="color:var(--gold);font-size:1.05em;font-weight:600;letter-spacing:0.04em;">↗ Abrir en Google Maps</a>
             </p>
 
         </div>
@@ -1673,7 +1571,7 @@
             <div class="footer-col-contacto">
                 <h4 class="footer-col-title">Contacto</h4>
                 <ul class="footer-links">
-                    <li><a href="tel:+573112031628">+57 311-203-1628</a></li>
+                    <li><a href="tel:+57 310-566-6098">+57 310-566-6098</a></li>
                     <li><a href="#como-llegar">Cra 5A # 22-31, Fusagasugá</a></li>
                     <li><a href="#como-llegar">Mar–Dom: 11:00–18:00</a></li>
                 </ul>
@@ -1691,12 +1589,11 @@
 
 <a
     id="whatsappBtn"
-    href="https://wa.me/573112031628?text=Hola!%20nos%20gustaria%20conocer%20la%20carta! · こんにちは！メニューを見せていただけますか！"
+    href="https://wa.me/573105666098?text=Hola!%20nos%20gustaria%20conocer%20la%20carta! · こんにちは！メニューを見せていただけますか！"
     class="whatsapp-btn"
     target="_blank"
     rel="noopener noreferrer"
     aria-label="Contactar por WhatsApp"
-    data-track="whatsapp_flotante"
 >
     <div class="wa-bubble">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -1711,25 +1608,6 @@
         <path d="M12 19V5M5 12l7-7 7 7"/>
     </svg>
 </button>
-
-<!-- ============================================================
-     DISH MODAL
-============================================================ -->
-<div class="dish-modal-overlay" id="dishModal" role="dialog" aria-modal="true" aria-labelledby="dishModalName">
-    <div class="dish-modal">
-        <button class="dish-modal-close" id="dishModalClose" aria-label="Cerrar">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <path d="M18 6L6 18M6 6l12 12"/>
-            </svg>
-        </button>
-        <img class="dish-modal-img" id="dishModalImg" src="" alt="" loading="lazy">
-        <div class="dish-modal-body">
-            <h3 class="dish-modal-name" id="dishModalName"></h3>
-            <span class="dish-modal-jp" id="dishModalJp"></span>
-            <p class="dish-modal-desc" id="dishModalDesc"></p>
-        </div>
-    </div>
-</div>
 
 <!-- ============================================================
      SCRIPTS
@@ -1894,15 +1772,6 @@
             }
         }, { passive: true });
     })();
-
-    // --- CTA click tracking (GA4 custom events) ---
-    document.querySelectorAll('[data-track]').forEach(el => {
-        el.addEventListener('click', () => {
-            if (typeof gtag === 'function') {
-                gtag('event', 'cta_click', { button_name: el.dataset.track });
-            }
-        });
-    });
 
     // --- Smooth anchor scroll (accounts for fixed nav height) ---
     document.querySelectorAll('a[href^="#"]').forEach(a => {

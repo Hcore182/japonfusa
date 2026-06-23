@@ -4,7 +4,9 @@
       "Skill(update-config)",
       "Skill(update-config:*)",
       "Bash(python -c ' *)",
-      "Bash(git restore *)"
+      "Bash(git restore *)",
+      "PowerShell(python --version)",
+      "PowerShell(node --version)"
     ],
     "defaultMode": "bypassPermissions"
   }
